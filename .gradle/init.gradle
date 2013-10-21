@@ -1,0 +1,28 @@
+// From http://blog.proxerd.pl/article/my-gradle-init-script
+
+projectsEvaluated {
+    rootProject.allprojects {
+        apply plugin: 'idea'
+
+        if (!tasks.findByName('initSourceDirs')) {
+            task initSourceDirs(description : 'make all dirs for project setup') << { task ->
+                def language = System.properties["${task.name}.only"] ?: 'allSource'
+                sourceSets.all { 
+                    it["${language}"].srcDirs.each { it.mkdirs() }   
+                }   
+            }   
+        }   
+
+        if (!tasks.findByName('wrapper') && !parent) {
+            task wrapper(type: Wrapper) {
+                gradleVersion = '1.2'
+            }   
+        }   
+    }
+}
+
+rootProject {
+    apply {
+        plugin 'build-announcements'
+    }       
+}
