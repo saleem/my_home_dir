@@ -18,6 +18,12 @@ projectsEvaluated {
                 gradleVersion = '1.2'
             }   
         }   
+
+	if (!tasks.findByName('showCache')) {
+	    task showCache << {
+	        configurations.compile.each { println it }
+	    }
+        }
     }
 }
 
