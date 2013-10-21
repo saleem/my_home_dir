@@ -1,1 +1,12 @@
-/Users/Thoughtworker/.gitconfig
+[user]
+	name = saleem
+	email = saleem@saleem-siddiqui.com
+[color]
+	ui = true
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
